@@ -51,6 +51,11 @@ function AnimationApp() {
           >
             <Switch location={location}>
               <Route path="/convert/:f/:t" children={<Convert />} />
+              <Route path="*" children={<div>
+                <h3>
+                  No match for <code>{location.pathname}</code>
+                </h3>
+              </div>} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
