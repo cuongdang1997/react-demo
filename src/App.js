@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import {
-  TransitionGroup,
-  CSSTransition
+  TransitionGroup
 } from "react-transition-group";
 import {
   BrowserRouter as Router,
@@ -44,21 +43,15 @@ function AnimationApp() {
             <CSSTransition>, just make sure to pass
             `location` to `Switch` so it can match
             the old location as it animates out.
-          */}
-          <CSSTransition
-            key={location.key}
-            classNames="fade"
-            timeout={0}
-          >
-            <Switch location={location}>
-              <Route path="/convert/:f/:t" children={<Convert />} />
-              <Route path="*" children={<div>
-                <h3>
-                  No match for <code>{location.pathname}</code>
-                </h3>
-              </div>} />
-            </Switch>
-          </CSSTransition>
+          */}          
+          <Switch location={location}>
+            <Route path="/convert/:f/:t" children={<Convert />} />
+            <Route path="*" children={<div>
+              <h3>
+                No match for <code>{location.pathname}</code>
+              </h3>
+            </div>} />
+          </Switch>          
         </TransitionGroup>
       </div>
     </div>
@@ -73,26 +66,24 @@ function Convert() {
     let value = e.target.value;
     if(name === 'f'){
       //setFromVC(value);
-      history.push("/convert/"+ value +"/" + toVC);
+      history.push("/convert/"+ value +"/" + t);
     } else {
       //setToVC(value);
-      history.push("/convert/"+ fromVC +"/" + value);
+      history.push("/convert/"+ f +"/" + value);
     }   
   }
   let { f, t } = useParams();
-  const [fromVC,setFromVC] = useState(f || "BTC");
-  const [toVC,setToVC] = useState(t || "ETH");
 
   return (
     <div>
       <input type="text" placeholder="Enter number"/>
-      <select name="f" value={fromVC} onChange={handleChange}>
+      <select name="f" value={f} onChange={handleChange}>
         <option value="BTC">BTC</option>
         <option value="ETH">ETH</option>
         <option value="XRP">XRP</option>
       </select>
       <span>To</span>
-      <select name="t" value={toVC} onChange={handleChange}>
+      <select name="t" value={t} onChange={handleChange}>
         <option value="BTC">BTC</option>
         <option value="ETH">ETH</option>
         <option value="XRP">XRP</option>
