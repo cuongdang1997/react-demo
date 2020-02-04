@@ -48,6 +48,7 @@ function AnimationApp() {
           <CSSTransition
             key={location.key}
             classNames="fade"
+            timeout={0}
           >
             <Switch location={location}>
               <Route path="/convert/:f/:t" children={<Convert />} />
