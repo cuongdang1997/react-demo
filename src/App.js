@@ -48,7 +48,8 @@ function AnimationApp() {
             <Route path="/convert/:f/:t" children={<Convert />} />
             <Route path="*" children={<div>
               <h3>
-                No match for <code>{location.pathname}</code>
+                {/*No match for <code>{location.pathname}</code>*/}
+                404
               </h3>
             </div>} />
           </Switch>          
